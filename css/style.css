@@ -1,0 +1,162 @@
+@font-face {
+    font-family: "CircularStd";
+    src: url("../assets/fonts/CircularStd.otf") format("opentype");
+}
+
+html {
+    box-sizing: border-box;
+    font-family: 'CircularStd';
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(0deg, rgba(42,42,42,1) 0%, rgba(28,31,47,1) 0%, rgba(126,127,144,1) 100%);
+    font-size: 12px;
+    color: #FFFFFF;
+}
+
+p { 
+    margin: 0;
+}
+
+.player-container {
+  width: 100%;
+}
+
+.player-topData {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    text-align: center;
+    padding: 0px 40px;
+}
+
+.player-textTop {
+    font-size: 0.7rem;
+}
+
+.player-textTop p {
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    line-height: 1rem;
+}
+
+.player-backButton img {
+    width: 20px;
+    cursor: pointer;
+}
+
+.player-aboutButton img {
+    width: 20px;
+    cursor: pointer;
+}
+
+.player-albumPortrait {
+    padding: 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.player-albumPortrait img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.song-mainData {
+    display: flex;
+    justify-content: space-between;
+}
+
+.song-title {
+    font-size: 1.3rem;
+    padding: 0px 20px;
+    margin-bottom: 3px;
+}
+
+.song-artist {
+    font-size: 1rem;
+    padding: 0px 20px;
+    color: #e6e6e6;
+}
+
+.song-favorite {
+    padding: 0px 20px;
+}
+
+.song-favorite img {
+    width: 32px;
+    cursor: pointer;
+}
+
+/* Progress */
+.player-trackbar {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    width: 90%;
+    margin-top: 40px;
+    margin-left: 20px;
+    cursor: pointer;
+    height: 0.2rem;
+}
+
+.song-progress {
+    background: #FFF;
+    border-radius: 5px;
+    height: 100%;
+    width: 20%;
+    transition: width 0.1s linear;
+}
+
+.song-durationWrapper {
+    position: relative;
+    bottom: -15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/*
+    Controls
+*/
+.player-controls {
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0px 0px;
+    margin-bottom: 40px;
+}
+
+.player-controls img {
+    width: 20px;
+    cursor: pointer;
+}
+
+.song-mainTrack img {
+    width: 80px;
+}
+
+/*
+    Misc
+*/
+.player-misc {
+    padding: 0px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.player-misc img {
+    width: 20px;
+}
+
+.player-miscButtons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
