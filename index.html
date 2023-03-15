@@ -8,54 +8,68 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <div class="player-container">
-        <div class="player-topData">
-            <div class="player-backButton"><img src="./assets/img/down-arrow.svg" alt="Back"></div>
-            <div class="player-textTop"><p>Tocando do Álbum</p><strong>Powerslave (2015 Remaster)</strong></div>
-            <div class="player-aboutButton"><img src="./assets/img/3dots.svg" alt="About"></div>
-        </div>
-        
-        <div class="player-albumPortrait">
-            <img src="./assets/covers/powerslave.jpg" alt="">
-        </div>
+    <div id="page-container" class="page-container">
+        <div class="project-container">
+            <div id="player-container" class="player-container">
+                <div class="player-topData">
+                    <div class="player-backButton"><img src="./assets/img/down-arrow.svg" alt="Back"></div>
+                    <div class="player-textTop"><p>Tocando do Álbum</p><strong><div id="player-albumTop"></div></strong></div>
+                    <div class="player-aboutButton"><img src="./assets/img/3dots.svg" alt="About"></div>
+                </div>
+                
+                <div class="player-albumPortrait">
+                    <img id="player-albumPortrait" src="" alt="">
+                </div>
 
-        <div class="song-mainData">
-            <div class="song-titleData">
-                <div class="song-title">Aces High - 2015 Remaster</div>
-                <div class="song-artist">Iron Maiden</div>
-            </div>
-            <div class="song-favorite">
-                <img src="./assets/img/favorite.svg" alt="Favorite this song">
-            </div>
-        </div>
+                <div class="song-mainData">
+                    <div class="song-titleData">
+                        <div class="song-title"><div class="marquee"><span id="song-title">Enter Sandman - 2021 Remaster</span></div></div>
+                        <div id="song-artist" class="song-artist"></div>
+                    </div>
+                    <div class="song-favorite">
+                        <img src="./assets/img/favorite.svg" alt="Favorite this song">
+                    </div>
+                </div>
 
-        <div class="player-progress">
-            <div class="song-trackbar">
-                <div class="song-currentProgress" id="currentProgress"></div>
-                <div class="song-durationWrapper">
-                    <span id="song-currentTime">0:00</span>
-                    <span id="song-duration">4:31</span>
+                <audio src=""></audio>
+
+                <div class="player-progress">
+                    <div id="song-trackbar" class="song-trackbar">
+                        <div id="song-currentProgress" class="song-currentProgress" id="currentProgress"></div>
+                        <div class="song-durationWrapper">
+                            <span id="song-currentTime">0:00</span>
+                            <span id="song-duration">0:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="player-controls">
+                    <div class="song-shuffle"><img src="./assets/img/shuffle.svg" alt="Shuffle"></div>
+                    <div id="previousTrack" class="song-previousTrack"><img src="./assets/img/previousTrack.svg" alt="Previous Track"></div>
+                    <div class="song-mainTrack"><img id="playTrack" src="./assets/img/play.svg" alt="Play"></div>
+                    <div id="nextTrack" class="song-nextTrack"><img src="./assets/img/nextTrack.svg" alt="Next Track"></div>
+                    <div class="song-repeat"><img src="./assets/img/repeat.svg" alt="Repeat"></div>
+                </div>
+
+                <div class="player-misc">
+                    <div class="player-device"><img src="./assets/img/device.svg" alt="Device"></div>
+
+                    <div class="player-miscButtons">
+                        <div class="player-share"><img src="./assets/img/share.svg" alt="Share"></div>
+                        <div class="player-playlist"><img src="./assets/img/playlist.svg" alt="Playlist"></div>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="player-controls">
-            <div class="song-shuffle"><img src="./assets/img/shuffle.svg" alt="Shuffle"></div>
-            <div class="song-previousTrack"><img src="./assets/img/previousTrack.svg" alt="Previous Track"></div>
-            <div class="song-mainTrack"><img src="./assets/img/play.svg" alt="Play"></div>
-            <div class="song-nextTrack"><img src="./assets/img/nextTrack.svg" alt="Next Track"></div>
-            <div class="song-repeat"><img src="./assets/img/repeat.svg" alt="Repeat"></div>
-        </div>
-
-        <div class="player-misc">
-            <div class="player-device"><img src="./assets/img/device.svg" alt="Device"></div>
-
-            <div class="player-miscButtons">
-                <div class="player-share"><img src="./assets/img/share.svg" alt="Share"></div>
-                <div class="player-playlist"><img src="./assets/img/playlist.svg" alt="Playlist"></div>
+            
+            <div class="project-about">
+                <h1>Spotify Clone</h1>
+                <h2>Desenvolvido por Marcos Vinícios</h2>
             </div>
         </div>
     </div>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+    <script src="./js/colorthief.js"></script>
+    <script src="./js/player.js"></script>
 </body>
 </html>

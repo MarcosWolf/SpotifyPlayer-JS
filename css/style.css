@@ -16,16 +16,80 @@ body {
     font-size: 12px;
     background-color: #000;
     color: #FFFFFF;
+    
 }
 
-p { 
+p, h1, h2, h3 { 
     margin: 0;
 }
+
+/* About */
+.page-container {
+    width: 100%;
+    align-items: center;
+}
+
+.project-container {
+    width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+}
+
+.project-about {
+    padding: 300px 60px;
+}
+
+.project-about h1 {
+    color: #FFF;
+    font-size: 4rem;
+}
+
+.project-about h2 {
+    color: #a8a8a8;
+}
+
+.marquee {
+    width: 35vh;
+    height: 22px;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 2px;
+    float: left;
+  }
+  .marquee span {
+    display: inline-block;
+    padding-left: 0%;
+    animation: marquee 15s linear infinite;
+    
+  }
+  
+  @keyframes marquee {
+    0% {
+      transform: translateX(100%);
+    }
+    40% {
+        transform: translateX(0%);
+    }
+    70% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+    
+  }
 
 .player-container {
   width: 50vh;
   height: 100%;
-  background: linear-gradient(0deg, rgba(42,42,42,1) 0%, rgba(28,31,47,1) 0%, rgba(126,127,144,1) 100%);
+  transition: 0.3s;
+}
+
+.player-container:hover {
+    background: black;
 }
 
 .player-topData {
@@ -80,13 +144,14 @@ p {
 }
 
 .song-title {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     padding: 0px 20px;
-    margin-bottom: 3px;
+    margin-bottom: 2px;
+    line-height: 1rem;
 }
 
 .song-artist {
-    font-size: 1rem;
+    font-size: 1.3rem;
     padding: 0px 20px;
     color: #e6e6e6;
 }
@@ -112,14 +177,14 @@ p {
     width: 100%;
     margin-top: 40px;
     cursor: pointer;
-    height: 0.2rem;
+    height: 0.5rem;
 }
 
 .song-currentProgress {
     background: #FFF;
     border-radius: 5px;
     height: 100%;
-    width: 20%;
+    width: 0%;
     transition: width 0.1s linear;
     
 }
