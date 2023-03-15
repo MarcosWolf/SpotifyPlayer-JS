@@ -3,6 +3,7 @@ const artist = document.getElementById('song-artist');
 const album = document.getElementById('player-albumTop')
 const music = document.querySelector('audio');
 const image = document.getElementById('player-albumPortrait');
+const favorite = document.getElementById('song-favorite');
 
 const progressContainer = document.getElementById('song-trackbar');
 const progress = document.getElementById('song-currentProgress');
@@ -27,6 +28,27 @@ function checkTitleLenght() {
     }
     
 }
+
+function checkFavorite() {
+    if (isFavorited == false) {
+        favorite.src = `../assets/img/favorite.svg`;
+    } else {
+        favorite.src = `../assets/img/favoriteMarked.svg`;
+    }
+}
+
+function toggleFavorite() {
+    if (isFavorited == false) {
+        favorite.src = `../assets/img/favoriteMarked.svg`;
+        songs[songIndex].favorite = true;
+        isFavorited = true;
+    } else {
+        favorite.src = `../assets/img/favorite.svg`;
+        songs[songIndex].favorite = false;
+        isFavorited = false;
+    }
+}
+
 
 function changeBgColor() {
     if (sourceImage.complete) {
@@ -55,40 +77,46 @@ async function loadImage(imageUrl) {
     return img;
 }
 
-const songs = [
+let songs = [
     {
         name: 'cartoon_whywelose',
         displayName: 'Why We Lose (feat. Coleman Trapp',
         artist: 'Cartoon, Coleman Trapp',
         album: 'NCS (NoCopyrightSounds) 2017',
+        favorite: true,
     },
     {
         name: 'elektronomia_limitless',
         displayName: 'Limit Less',
         artist: 'Elektronomia',
         album: 'NCS (NoCopyrightSounds) 2017',
+        favorite: false,
     },
     {
         name: 'annayvette_redline',
         displayName: 'Red Line',
         artist: 'Anna Yvette',
-        album: 'NCS (NoCopyrightSounds) 2019'
+        album: 'NCS (NoCopyrightSounds) 2019',
+        favorite: false,
     },
     {
         name: 'deafkev_invincible',
         displayName: 'Invincible',
         artist: 'DEAF KEV',
         album: 'NCS (NoCopyrightSounds) 2015',
+        favorite: false,
     },
     {
         name: 'differentheaven_myheart',
         displayName: 'My Heart',
         artist: 'Different Heaven, EH!DE',
-        album: 'NCS (NoCopyrightSounds) 2014'
+        album: 'NCS (NoCopyrightSounds) 2014',
+        favorite: false,
     }
 ];
 
 let isPlaying = false;
+let isFavorited = false;
 
 function playSong(){
     isPlaying = true;
@@ -112,6 +140,8 @@ function loadSong(song){
     music.src = `../assets/musics/${song.name}.mp3`;
     image.src = `../assets/covers/${song.name}.jpg`;
     loadImage(`../assets/covers/${song.name}.jpg`);
+    isFavorited = song.favorite;
+    checkFavorite();
     checkTitleLenght();
 }
 
@@ -175,3 +205,4 @@ nextTrack.addEventListener('click', nextSong);
 music.addEventListener('ended', nextSong);
 music.addEventListener('timeupdate', updateProgressBar);
 progressContainer.addEventListener('click', setProgressBar);
+favorite.addEventListener('click', toggleFavorite);
