@@ -14,6 +14,7 @@ const previousTrack = document.getElementById('previousTrack');
 const playTrack = document.getElementById('playTrack');
 const nextTrack = document.getElementById('nextTrack');
 const repeatTrack = document.getElementById('repeatTrack');
+const shuffleTrack = document.getElementById('shuffleTrack');
 
 var sourceImage = document.getElementById("player-albumPortrait");
 var sourceBg = document.getElementById("player-container");
@@ -117,6 +118,7 @@ let songs = [
 
 let isPlaying = false;
 let isFavorited = false;
+let isShuffling = false;
 
 /*
  0 = false
@@ -170,13 +172,17 @@ function nextSong(x) {
         songIndex++;
         
         if (repeatState != 1) {
-            if (songIndex > songs.length -1){
-                songIndex = 0;
-                loadSong(songs[songIndex]);
-                pauseSong();
+            if (isShuffling) {
+                // Caso esteja no aleatorio
             } else {
-                loadSong(songs[songIndex]);
-                playSong();
+                if (songIndex > songs.length -1){
+                    songIndex = 0;
+                    loadSong(songs[songIndex]);
+                    pauseSong();
+                } else {
+                    loadSong(songs[songIndex]);
+                    playSong();
+                }
             }
         } else {
             if (songIndex > songs.length -1){
@@ -197,6 +203,23 @@ function nextSong(x) {
             repeatState = 1;
             repeatTrack.src = `../assets/img/repeatAll.svg`;
         }
+    }
+}
+
+// Shuffle Tracks
+function shuffleIndex() {
+    do {
+        alert(shuffledIndex = Math.floor(Math.random() * songs.length));
+    } while (shuffledIndex === songIndex);
+}
+
+function toggleShuffle() {
+    if (isShuffling == false) {
+        isShuffling = true;
+        shuffleTrack.src = `../assets/img/shuffleMarked.svg`;
+    } else {
+        isShuffling = false;
+        shuffleTrack.src = `../assets/img/shuffle.svg`;
     }
 }
 
@@ -258,4 +281,5 @@ music.addEventListener('timeupdate', updateProgressBar);
 progressContainer.addEventListener('click', setProgressBar);
 
 favorite.addEventListener('click', toggleFavorite);
+shuffleTrack.addEventListener('click', toggleShuffle);
 repeatTrack.addEventListener('click', checkRepeatState);
