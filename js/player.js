@@ -13,6 +13,7 @@ const durationEl = document.getElementById('song-duration');
 const previousTrack = document.getElementById('previousTrack');
 const playTrack = document.getElementById('playTrack');
 const nextTrack = document.getElementById('nextTrack');
+const repeatTrack = document.getElementById('repeatTrack');
 
 var sourceImage = document.getElementById("player-albumPortrait");
 var sourceBg = document.getElementById("player-container");
@@ -48,7 +49,6 @@ function toggleFavorite() {
         isFavorited = false;
     }
 }
-
 
 function changeBgColor() {
     if (sourceImage.complete) {
@@ -118,6 +118,13 @@ let songs = [
 let isPlaying = false;
 let isFavorited = false;
 
+/*
+ 0 = false
+ 1 = repeat all
+ 2 = repeat 1 song
+*/
+let repeatState = 0;
+
 function playSong(){
     isPlaying = true;
     playTrack.src = `../assets/img/pause.svg`;
@@ -158,13 +165,57 @@ function prevSong(){
 }
 
 // Next Song
-function nextSong(){
-    songIndex++;
-    if (songIndex > songs.length -1){
-        songIndex = 0;
+function nextSong(x) {
+    if (repeatState != 2) {
+        songIndex++;
+        
+        if (repeatState != 1) {
+            if (songIndex > songs.length -1){
+                songIndex = 0;
+                loadSong(songs[songIndex]);
+                pauseSong();
+            } else {
+                loadSong(songs[songIndex]);
+                playSong();
+            }
+        } else {
+            if (songIndex > songs.length -1){
+                songIndex = 0;
+            }
+
+            loadSong(songs[songIndex]);
+            playSong();
+        }
+    } else {
+        if (music.ended) {
+            loadSong(songs[songIndex]);
+            playSong();
+        } else {
+            songIndex++;
+            loadSong(songs[songIndex]);
+            playSong();
+            repeatState = 1;
+            repeatTrack.src = `../assets/img/repeatAll.svg`;
+        }
     }
-    loadSong(songs[songIndex]);
-    playSong();
+}
+
+// Repeat Track
+function checkRepeatState() {
+    repeatState++;
+
+    if (repeatState == 0) {
+        repeatTrack.src = `../assets/img/repeat.svg`;
+    } else if (repeatState == 1) {
+        repeatTrack.src = `../assets/img/repeatAll.svg`;
+    } else {
+        repeatTrack.src = `../assets/img/repeatOne.svg`;
+    }
+
+    if (repeatState > 2) {
+        repeatState = 0;
+        repeatTrack.src = `../assets/img/repeat.svg`;
+    }
 }
 
 
@@ -205,4 +256,6 @@ nextTrack.addEventListener('click', nextSong);
 music.addEventListener('ended', nextSong);
 music.addEventListener('timeupdate', updateProgressBar);
 progressContainer.addEventListener('click', setProgressBar);
+
 favorite.addEventListener('click', toggleFavorite);
+repeatTrack.addEventListener('click', checkRepeatState);
